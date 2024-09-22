@@ -1,6 +1,6 @@
 <script setup>
 import { provide, ref, watch } from 'vue';
-import { darkTheme, lightTheme, NLayout, useOsTheme, NLayoutContent, NGlobalStyle, NConfigProvider, NLayoutSider, NSpace, NLayoutHeader, NLayoutFooter } from "naive-ui";
+import { darkTheme, lightTheme, NLayout, useOsTheme, NGlobalStyle, NConfigProvider, NLayoutSider, NLayoutHeader, NLayoutFooter } from "naive-ui";
 import { useRoute } from 'vue-router';
 
 const osTheme = useOsTheme();
@@ -43,37 +43,37 @@ provide("theme", {
 <template>
   <n-config-provider :theme="theme">
     <n-global-style />
-    <div style="height: 100vh; position: relative; width: 100vw;">
-      <n-layout-header
-        style="top: 0; min-height: 64px; padding: 0 24px;"
-        position="absolute"
+    <n-layout style="height: 100vh">
+    <n-layout-header style="height: 64px; padding: 24px" bordered v-if="route.meta.showHeader">
+      <router-view name="header" />
+    </n-layout-header>
+    <n-layout position="absolute" style="top: 64px; bottom: 64px" has-sider>
+      <n-layout-sider
+        content-style="padding: 24px;"
+        :native-scrollbar="false"
+        collapse-mode="width"
+        show-trigger="bar"
+        :collapsed="collapsed"
+        @collapse="collapsed = true"
+        @expand="collapsed = false"
         bordered
-        v-if="route.meta.showHeader"
-        class="layout"
+        v-if="route.meta.showSider"
       >
-        <router-view name="header" />
-      </n-layout-header>
-      <n-layout has-sider style="">
-        <n-layout-sider
-          bordered
-          collapse-mode="width"
-          :native-scrollbar="false"
-          show-trigger="bar"
-          :collapsed="collapsed"
-          @collapse="collapsed = true"
-          @expand="collapsed = false"
-          v-if="route.meta.showSider"
-        >
-          <router-view name="sider" />
-          <n-layout-footer bordered >
-            <router-view name="footer" />
-          </n-layout-footer>
-        </n-layout-sider>
-        <n-layout-content :native-scrollbar="false" >
-          <router-view />
-        </n-layout-content>
+        <router-view name="sider" />
+      </n-layout-sider>
+      <n-layout content-style="padding: 24px;" :native-scrollbar="false">
+        <router-view />
       </n-layout>
-    </div>
+    </n-layout>
+    <n-layout-footer
+      position="absolute"
+      style="height: 64px; padding: 24px"
+      bordered
+      v-if="route.meta.showFooter"
+    >
+      <router-view name="footer" />
+    </n-layout-footer>
+  </n-layout>
   </n-config-provider>
 </template>
 
