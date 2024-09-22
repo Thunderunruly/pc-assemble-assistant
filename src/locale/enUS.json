@@ -1,0 +1,8 @@
+{
+    "welcome": "Welcome",
+    "hello": "Hello, {name}!",
+    "title": {
+        "default": "Default",
+        "home": "Home Page"
+    }
+}
