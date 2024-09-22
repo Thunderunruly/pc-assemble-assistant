@@ -2,13 +2,16 @@
 import { provide, ref, watch } from 'vue';
 import { darkTheme, lightTheme, NLayout, useOsTheme, NGlobalStyle, NConfigProvider, NLayoutSider, NLayoutHeader, NLayoutFooter } from "naive-ui";
 import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { messages } from './i18n';
 
 const osTheme = useOsTheme();
 const currentTheme = ref('system');
 const theme = ref(lightTheme);
 const collapsed = ref(true);
 const route = useRoute();
-
+const { locale } = useI18n();
+const language = ref(messages[locale.value]);
 const themeOptions = [
   { label: 'System', value: 'system' },
   { label: 'Dark', value: 'dark' },
@@ -33,26 +36,32 @@ watch(osTheme, () => {
   }
 });
 
+watch(locale, (newValue) => {
+  language.value = messages[newValue]
+})
+
 updateTheme(currentTheme.value);
 provide("theme", {
   options: themeOptions,
   update: updateTheme
-})
+});
+provide("collapsed", collapsed);
 </script>
 
 <template>
-  <n-config-provider :theme="theme">
+  <n-config-provider :theme="theme" :locale="language" >
     <n-global-style />
     <n-layout style="height: 100vh">
-    <n-layout-header style="height: 64px; padding: 24px" bordered v-if="route.meta.showHeader">
+    <n-layout-header style="height: 64px;" bordered v-if="route.meta.showHeader">
       <router-view name="header" />
     </n-layout-header>
     <n-layout position="absolute" style="top: 64px; bottom: 64px" has-sider>
       <n-layout-sider
-        content-style="padding: 24px;"
         :native-scrollbar="false"
         collapse-mode="width"
         show-trigger="bar"
+        :collapsed-width="64"
+        :width="240"
         :collapsed="collapsed"
         @collapse="collapsed = true"
         @expand="collapsed = false"
