@@ -9,9 +9,10 @@ const count = ref(0)
 </script>
 
 <template>
+  <div>
   <h1>{{ msg }}</h1>
 
-  <div class="card">
+  <div class="card" >
     <button type="button" @click="count++">count is {{ count }}</button>
     <p>
       Edit
@@ -34,6 +35,7 @@ const count = ref(0)
     >.
   </p>
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+</div>
 </template>
 
 <style scoped>

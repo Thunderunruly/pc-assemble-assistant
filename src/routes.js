@@ -6,11 +6,16 @@ const routes = [
         path: "",
         components: {
             default: HelloWorld,
-            left: HelloWorld,
+            sider: HelloWorld,
+            header: HelloWorld,
+            footer: HelloWorld,
         },
-        name: "Home",
+        name: "home",
         meta: {
-            title: "home"
+            title: "home",
+            showSider: true,
+            showHeader: true,
+            showFooter: true,
         }
     }
 ];
