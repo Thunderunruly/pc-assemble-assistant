@@ -1,4 +1,5 @@
 <script setup>
+import { NSelect } from 'naive-ui';
 import { watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';

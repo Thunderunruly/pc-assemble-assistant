@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { create, NButton, NCard, NConfigProvider, NGlobalStyle, NSelect } from 'naive-ui'
+import { create } from 'naive-ui'
 import router from './routes';
 import i18n from './i18n';
 
 const naive = create({
-    components: [NConfigProvider,NButton,NCard, NSelect, NGlobalStyle]
+    components: []
 });
 
 
