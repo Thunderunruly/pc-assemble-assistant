@@ -14,7 +14,7 @@ app.use(i18n);
 app.use(router);
 app.use(naive);
 
-router.beforeEach( async ( to, from, next ) => {
+router.beforeEach(( to, from, next ) => {
     const titleKey = "title." + (to.meta.title || "default");
     document.title = i18n.global.t(titleKey);
     next();

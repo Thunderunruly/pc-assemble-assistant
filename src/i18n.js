@@ -1,10 +1,13 @@
 import { createI18n } from 'vue-i18n';
-import { zhCN as naiveZhCN, enUS as naiveEnUS, zhCN } from 'naive-ui';
 import zhCNJSON from './locale/zhCN.json';
 import enUSJSON from './locale/enUS.json';
-import languages from './locale/languages.json';
+import languages from "./i18n/languages.json";
+import { 
+    zhCN as naiveZhCN, 
+    enUS as naiveEnUS,
+} from 'naive-ui';
 
-const messages = {
+export const messages = {
   zhCN: {
     languages,
     ...naiveZhCN,
@@ -18,9 +21,9 @@ const messages = {
 };
 
 const i18n = createI18n({
-  locale: 'zhCN',
+  locale: 'enUS',
   messages,
-  availableLocales: ["zhCN", "enUS"]
+  availableLocales: Object.keys(messages)
 });
 
 export default i18n;

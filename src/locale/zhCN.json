@@ -3,6 +3,8 @@
     "hello": "你好，{name}!",
     "title": {
         "default": "默认",
-        "home": "主页"
-    }
+        "home": "主页",
+        "about": "关于"
+    },
+    "back.home": "返回主页"
 }

@@ -19,6 +19,6 @@ watch(locale, () => {
 </script>
 
 <template>
-    <n-select v-model:value="locale" :options="options"/>
+    <n-select v-bind="$attrs" v-model:value="locale" :options="options"/>
   </template>
   

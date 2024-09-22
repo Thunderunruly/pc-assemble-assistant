@@ -3,6 +3,8 @@
     "hello": "Hello, {name}!",
     "title": {
         "default": "Default",
-        "home": "Home Page"
-    }
+        "home": "Home Page",
+        "about": "About Page"
+    },
+    "back.home": "Back to Home"
 }
